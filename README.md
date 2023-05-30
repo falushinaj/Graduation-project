@@ -1,3 +1,7 @@
+# Ссылка на проект.
+
+https://falushinaj.github.io/Graduation-project/
+
 # Дипломное задание по курсу «JavaScript-программирование для начинающих»
 
 - [Верстка](./sources/layout.zip)
