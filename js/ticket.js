@@ -19,13 +19,15 @@ window.addEventListener('load', () => {
     document.getElementById('ticket_seance').textContent = seance.seance_time;
 
     // данные для qr кода
-    const data = JSON.stringify({
-        ticket_title: film.film_name,
-        ticket_places: places.join(", "),
-        ticket_hall: hall.hall_name,
-        ticket_seance: seance.seance_time,
-        ticket_price: price
-    });
+    const data = `
+    Фильм: ${film.film_name}
+    Зал: ${hall.hall_name} 
+    Ряд/Место ${places.join(", ")}
+    Дата: ${seance.day}
+    Начало сеанса: ${seance.seance_time}
+    Билет действителен строго на свой сеанс`
+
+
 
     //добавляем qr код в элемент
     document.getElementById('qrcode').append(QRCreator(data,
