@@ -36,28 +36,25 @@ window.addEventListener('load', async () => {
     })
 
     document.querySelector('.acceptin-button').addEventListener('click', () => {
-        request(`event=sale_add&hallId=${hallId}&seanceId=${seanceId}&hallConfiguration=${hallWrapper.innerHTML}`)
-            .then(() => {
-                let price = 0;
-                //по родителю получаем индекс элемента клетки и ряда
-                let chairs = Array.from(hallWrapper.querySelectorAll('.conf-step__chair_selected')).reduce((chars, charEl) => {
-                    const rowEl = charEl.parentNode;
-                    price+= charEl.classList.contains('conf-step__chair_vip') ? parseInt(hall.hall_price_vip) : parseInt(hall.hall_price_standart);
-                    return [...chars, {
-                        row: [].indexOf.call(rowEl.parentNode.children, rowEl) + 1,
-                        char: [].indexOf.call(rowEl.children, charEl) + 1
-                    }]
-                }, []); //получаю массив выбранных мест
+        let price = 0;
+        //по родителю получаем индекс элемента клетки и ряда
+        let chairs = Array.from(hallWrapper.querySelectorAll('.conf-step__chair_selected')).reduce((chars, charEl) => {
+            const rowEl = charEl.parentNode;
+            price+= charEl.classList.contains('conf-step__chair_vip') ? parseInt(hall.hall_price_vip) : parseInt(hall.hall_price_standart);
+            return [...chars, {
+                row: [].indexOf.call(rowEl.parentNode.children, rowEl) + 1,
+                char: [].indexOf.call(rowEl.children, charEl) + 1
+            }]
+        }, []); //получаю массив выбранных мест
 
-                hall.hall_config = hallWrapper.innerHTML.replace(/conf-step__chair_selected/g, "conf-step__chair_taken"); //выбранные места отмечаем как занятые
+        hall.hall_config = hallWrapper.innerHTML.replace(/conf-step__chair_selected/g, "conf-step__chair_taken"); //выбранные места отмечаем как занятые
 
-                localStorage.setItem('places', JSON.stringify(chairs));
-                localStorage.setItem('film', JSON.stringify(film));
-                localStorage.setItem('hall', JSON.stringify(hall));
-                localStorage.setItem('seance', JSON.stringify(seance));
-                localStorage.setItem('price', price.toString());
-                window.location.href = "./payment.html"; //переход на страницу оплаты
-            })
+        localStorage.setItem('places', JSON.stringify(chairs));
+        localStorage.setItem('film', JSON.stringify(film));
+        localStorage.setItem('hall', JSON.stringify(hall));
+        localStorage.setItem('seance', JSON.stringify(seance));
+        localStorage.setItem('price', price.toString());
+        window.location.href = "./payment.html"; //переход на страницу оплаты
     })
 })
 
