@@ -28,9 +28,8 @@ window.addEventListener('load', () => {
     Билет действителен строго на свой сеанс`
 
 
-
     //добавляем qr код в элемент
-    document.getElementById('qrcode').append(QRCreator(data,
+    document.getElementById('qrcode')?.append(QRCreator(data,
         {
             mode: 4,
             image: 'png',
