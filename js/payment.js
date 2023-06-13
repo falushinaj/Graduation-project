@@ -12,4 +12,12 @@ window.addEventListener('load', () => {
     document.getElementById('ticket_hall').textContent = hall.hall_name.replace(/[^+\d]/g, '');
     document.getElementById('ticket_seance').textContent = seance.seance_time;
     document.getElementById('ticket_price').textContent = price;
+
+    console.log(hall, seance)
+    document.getElementById('getCodeButton').addEventListener('click', () => {
+        request(`event=sale_add&hallId=${hall.hall_id}&seanceId=${seance.seance_id}&hallConfiguration=${hall.hall_config}`)
+            .then(() => {
+                window.location.href = '/client/ticket.html'
+            })
+    })
 })
