@@ -17,7 +17,7 @@ window.addEventListener('load', () => {
     document.getElementById('getCodeButton').addEventListener('click', () => {
         request(`event=sale_add&hallId=${hall.hall_id}&seanceId=${seance.seance_id}&hallConfiguration=${hall.hall_config}`)
             .then(() => {
-                window.location.href = '/client/ticket.html'
+                window.location.href = './ticket.html'
             })
     })
 })
